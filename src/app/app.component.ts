@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { from, Observable, Subscription } from 'rxjs';
-import { map, filter, first, find } from 'rxjs/operators';
+import { map, filter, first, find, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -61,6 +61,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // single() -> just emmit first value. If > 1 value -> false -> show Error
 
+    // take() : nhận vào 1 tham số count để dùng cho số lần lấy giá trị được emit từ Observable sau đó sẽ complete.
+    console.log('------------------take()--------------');
+
+    from([1, 2, 3, 4, 5])
+      .pipe(
+        take(1)
+      )
+      .subscribe((x) => {
+        console.log(x);
+      })
 
   }
 
